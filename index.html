@@ -1,0 +1,36 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <title>Lab 1 - Messenger</title>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCb5N90NyZn_PGuvR51sZlNjdgEw378zGU",
+            authDomain: "ecmessenger-acfd9.firebaseapp.com",
+            databaseURL: "https://ecmessenger-acfd9.firebaseio.com",
+            projectId: "ecmessenger-acfd9",
+            storageBucket: "",
+            messagingSenderId: "1094329331082"
+        };
+        firebase.initializeApp(config);
+
+        window.onload = function() {
+            const db = firebase.database();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="chat">
+        <form class="whoAmI">
+            <label>Hello, what is your name?</label><br>
+            <input type="text" />
+            <input type="submit" />
+        </form>
+        <ul>
+
+        </ul>
+    </div>
+</body>
+</html>
