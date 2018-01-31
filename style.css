@@ -1,4 +1,135 @@
 * {
     margin: 0;
     padding: 0;
+
+    list-style-type: none;
+
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 14px;
+}
+
+.chat {
+    width: 25%;
+    margin-left: 37.5%;
+}
+
+.message {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: rgb(73, 146, 255);
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.from {
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 0.5em;
+} 
+
+.messageText {
+    margin-bottom: 0.5em;
+}
+
+.messageInfo {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sentTime {
+    color: rgba(0, 0, 0, 0.6);
+    flex: 0 0 48%;
+    margin-right: 2%;
+    margin-right: auto;
+}
+
+#chatWindow {
+    margin-top: 1em;
+}
+
+.downvotes {
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    flex: 0 0 auto;
+    margin-left: 1em;
+
+    background: rgb(0, 27, 46);
+    padding: 0.25em 0.75em 0.25em 0.75em;
+}
+
+.upvotes {
+    text-decoration: none;
+    color: rgb(0, 255, 21);
+    flex: 0 0 auto;
+    margin-left: 1em;
+
+    background: rgb(0, 27, 46); 
+    padding: 0.25em 0.75em 0.25em 0.75em;
+}
+
+input {
+    padding: 0.5em;
+}
+
+#whoAmI {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#whoAmI label {
+    font-size: 1.3em;
+}
+
+input[type="submit"] {
+    background: rgb(73, 146, 255);
+    border: 1px solid rgb(56, 111, 192);
+    color: white;
+}
+
+.about {
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+#name {
+    flex: 0 0 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+#forgetName {
+    flex: 0 0 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: right;
+}
+
+#messageBox textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 5em;
+    padding: 0.5em;
+}
+
+#messageBox input {
+    margin-top: 1em;
+    padding: 0.75em 1.25em 0.75em 1.25em;
+}
+
+#messageBox {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.hidden {
+    display: none;
+}
+
+ul {
+    max-height: 500px;
+    overflow-y: scroll;
+    padding-right: 0.5em;
 }

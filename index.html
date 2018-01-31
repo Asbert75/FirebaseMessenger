@@ -19,18 +19,28 @@
     <script src="main.js" type="text/javascript"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
     <div class="chat">
-        <form class="whoAmI">
-            <label>Hello, what is your name?</label><br>
-            <input type="text" />
-            <input type="submit" />
-        </form>
-        <ul>
-
+        <ul id="messages"> 
         </ul>
+        <form id="whoAmI">
+            <label>Looks like it's your first time here, what is your name?</label><br><br>
+            <input id="user" type="text" placeholder="John Doe"/>
+            <input id="username" type="submit" value="Join Chat"/>
+        </form>
+        <div id="chatWindow" class="hidden">
+            <div class="about">
+                <p id="name">Welcome, <span id="currentUser">Name</span></p>
+                <a href="#" id="forgetName">Forget Me?</a>
+            </div>
+            <form id="messageBox">
+                <textarea id="textBox" placeholder="Write a message..."></textarea>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
     </div>
 </body>
 </html>
