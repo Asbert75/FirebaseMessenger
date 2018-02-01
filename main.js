@@ -163,7 +163,7 @@ window.onload = function() {
         }
     });
 
-    //fetchMessages();
+    fetchMessages();
     db.ref("messages/").on("child_added", function(snapshot, prevChildKey) {
         let data = snapshot.val();
         let key = snapshot.key;
