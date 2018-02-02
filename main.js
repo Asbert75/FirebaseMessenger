@@ -20,7 +20,7 @@ window.onload = function() {
         whoAmI.classList.add("hidden");
         chatWindow.classList.remove("hidden");
         messages.classList.remove("hidden");
-
+        console.log(messages);
     }
 
     function createMessageBox(msgId, fromUser, msg, sentAt) {
@@ -140,6 +140,7 @@ window.onload = function() {
 
         whoAmI.classList.remove("hidden");
         chatWindow.classList.add("hidden");
+        messages.classList.add("hidden");
     });
 
     messageBox.addEventListener("submit", function() {
@@ -176,6 +177,8 @@ window.onload = function() {
     db.ref("messages/").on("child_added", function(snapshot, prevChildKey) {
         let data = snapshot.val();
         let key = snapshot.key;
+
+        console.log("")
 
         createMessageBox(key, data.name, data.message, data.sent);
     });
