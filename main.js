@@ -19,6 +19,8 @@ window.onload = function() {
 
         whoAmI.classList.add("hidden");
         chatWindow.classList.remove("hidden");
+        messages.classList.remove("hidden");
+
     }
 
     function createMessageBox(msgId, fromUser, msg, sentAt) {
@@ -77,6 +79,15 @@ window.onload = function() {
                 upvotes: likes
             }
 
+            let user = JSON.parse(localStorage.getItem("user")).name;
+            let likeData = {
+                vote: "+1",
+                user: user,
+                msgId: msgId
+            }
+
+            db.ref("userLikes/").push(likeData);
+
             db.ref("likes/" + msgId).set(votes);
             upvotes.innerText = "+" + likes;
         });
@@ -87,6 +98,15 @@ window.onload = function() {
                 downvotes: dislikes,
                 upvotes: upvoteCount
             }
+
+            let user = JSON.parse(localStorage.getItem("user")).name;
+            let likeData = {
+                vote: "-1",
+                user: user,
+                msgId: msgId
+            }
+
+            db.ref("userLikes/").push(likeData);
 
             db.ref("likes/" + msgId).set(votes);
             downvotes.innerText = "-" + dislikes;
