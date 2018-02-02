@@ -106,10 +106,6 @@ window.onload = function() {
             }
         });
     }
-    
-    function submitMessage() {
-        let textBox = document.getElementById("textBox");
-    }
 
     whoAmI.addEventListener("submit", function(event) {
         event.preventDefault();
