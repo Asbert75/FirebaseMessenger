@@ -5,7 +5,10 @@ window.onload = function() {
     const chatWindow = document.getElementById("chatWindow");
     const messageBox = document.getElementById("messageBox");
     const messages = document.getElementById("messages");
-    let currentUser;
+    let currentUser = {
+        name: null,
+        id: null
+    }
 
     if(JSON.parse(localStorage.getItem("user"))) {
         currentUser = JSON.parse(localStorage.getItem("user")).name;
@@ -20,6 +23,21 @@ window.onload = function() {
         whoAmI.classList.add("hidden");
         chatWindow.classList.remove("hidden");
         messages.classList.remove("hidden");
+    }
+
+    function hasVoted(msgId) {
+        if(localStorage.getItem(msgId)) {
+            console.log("User has already liked message with ID: " , msgId);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    function vote(msgId) {
+        console.log("Saved like from user on message with ID: " , msgId);
+        localStorage.setItem(msgId, msgId);
     }
 
     function createMessageBox(msgId, fromUser, msg, sentAt) {
@@ -72,44 +90,51 @@ window.onload = function() {
         });
 
         upvotes.addEventListener("click", function() {
-            let likes = upvoteCount+1;
-            let votes = {
-                downvotes: downvoteCount,
-                upvotes: likes
+            if(!(hasVoted(msgId))) {
+                let likes = upvoteCount+1;
+                let votes = {
+                    downvotes: downvoteCount,
+                    upvotes: likes
+                }
+
+                let user = JSON.parse(localStorage.getItem("user")).name;
+                let likeData = {
+                    vote: "+1",
+                    user: user,
+                    msgId: msgId
+                }
+
+                db.ref("userLikes/").push(likeData);
+
+                db.ref("likes/" + msgId).set(votes);
+                upvotes.innerText = "+" + likes;
+
+                vote(msgId);
             }
-
-            let user = JSON.parse(localStorage.getItem("user")).name;
-            let likeData = {
-                vote: "+1",
-                user: user,
-                msgId: msgId
-            }
-
-            db.ref("userLikes/").push(likeData);
-
-            db.ref("likes/" + msgId).set(votes);
-            upvotes.innerText = "+" + likes;
         });
 
         downvotes.addEventListener("click", function() {
-            let dislikes = downvoteCount+1;
-            let votes = {
-                downvotes: dislikes,
-                upvotes: upvoteCount
+            if(!(hasVoted(msgId))) {
+                let dislikes = downvoteCount+1;
+                let votes = {
+                    downvotes: dislikes,
+                    upvotes: upvoteCount
+                }
+
+                let user = JSON.parse(localStorage.getItem("user")).name;
+                let likeData = {
+                    vote: "-1",
+                    user: user,
+                    msgId: msgId
+                }
+
+                db.ref("userLikes/").push(likeData);
+
+                db.ref("likes/" + msgId).set(votes);
+                downvotes.innerText = "-" + dislikes;
+                
+                vote(msgId);
             }
-
-            let user = JSON.parse(localStorage.getItem("user")).name;
-            let likeData = {
-                vote: "-1",
-                user: user,
-                msgId: msgId
-            }
-
-            db.ref("userLikes/").push(likeData);
-
-            db.ref("likes/" + msgId).set(votes);
-            downvotes.innerText = "-" + dislikes;
-
         });
 
         messageInfo.appendChild(sentTime);
@@ -134,7 +159,7 @@ window.onload = function() {
     });
 
     document.getElementById("forgetName").addEventListener("click", function() {
-        localStorage.removeItem("user");
+        localStorage.clear();
         currentUser = undefined;
 
         whoAmI.classList.remove("hidden");
