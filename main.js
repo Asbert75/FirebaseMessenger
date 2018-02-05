@@ -159,7 +159,7 @@ window.onload = function() {
     });
 
     document.getElementById("forgetName").addEventListener("click", function() {
-        localStorage.clear();
+        localStorage.reset();
         currentUser = undefined;
 
         whoAmI.classList.remove("hidden");
